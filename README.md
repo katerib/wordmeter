@@ -4,7 +4,7 @@ A web-based tool designed to analyze writing patterns by identifying the frequen
 
 ## Project Inspiration & Development Goals
 
-During my CS post-bacc, I developed a series of book/reading-related projects during my personal time. One of these, a small command-line program I named [InkCounter](https://github.com/katerib/inkCTR), was a very bare-bones command-line program that analyzes a user-specified PDF to determine the most used words in that PDF. The program allowed the user to modify the 'ignored words' list to add names, places, etc., but other than that the code very literally counted every word in the PDF.
+During my CS post-bacc, I developed a series of book/reading-related projects during my personal time. One of these, a small command-line program I named [INKCTR](https://github.com/katerib/inkCTR), was a very bare-bones command-line program that analyzes a user-specified PDF to determine the most used words in that PDF. The program allowed the user to modify the 'ignored words' list to add names, places, etc., but other than that the code very literally counted every word in the PDF.
 
 I wanted to improve the program by improving the:
 

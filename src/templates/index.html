@@ -7,12 +7,14 @@
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="static/style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    </head>
-    <body>
-        {% block content %}
-        {% endblock content %}
-        <footer>
-            {% block footer %}{% endblock footer %}
-        </footer>
-    </body>
+</head>
+<body>
+    {% block content %}
+    {% endblock content %}
+    <footer>
+        {% block footer %}{% endblock footer %}
+    </footer>
+</body>
+{% block scripts %}{% endblock scripts %}
+
 </html>

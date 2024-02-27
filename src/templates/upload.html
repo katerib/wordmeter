@@ -8,12 +8,35 @@
 {% if error %}
     <p style="color: red;">{{ error }}</p>
 {% endif %}
+
 <form action="/" method="post" enctype="multipart/form-data">
     <label for="file">Upload File:</label>
     <input type="file" name="file" id="file"><br><br>
     <label for="textinput">Or Enter Text:</label><br>
     <textarea name="textinput" id="textinput" rows="5" cols="50"></textarea><br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit">    
+    <br><br>
+
+    <!-- Advanced search button -->
+    <button type="button" onclick="toggleAdvancedSearch()">Advanced Search</button>
+    <div id="advancedSearch" style="display:none;">
+        <p>Select N-Gram Length:</p>
+        <input type="checkbox" id="ngram2" name="ngram_length" value="2">
+        <label for="ngram2">2</label><br>
+        <input type="checkbox" id="ngram3" name="ngram_length" value="3">
+        <label for="ngram3">3</label><br>
+        <input type="checkbox" id="ngram4" name="ngram_length" value="4">
+        <label for="ngram4">4</label><br>
+        <input type="checkbox" id="ngram5" name="ngram_length" value="5">
+        <label for="ngram5">5</label><br>
+        
+        <label for="freqTarget">Frequency Target:</label>
+        <input type="number" id="freqTarget" name="freq_target" value="2" min="1"><br>
+    </div>
 </form>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts/advancedSearch.js') }}"></script>
+{% endblock scripts %}
 
 {% endblock content %}

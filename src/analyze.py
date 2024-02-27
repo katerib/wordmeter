@@ -10,8 +10,6 @@ nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 nltk.download('averaged_perceptron_tagger', quiet=True)
 
-FREQ_TARGET = 2
-
 pos_patterns_instance = POSPatterns()
 pos_patterns = pos_patterns_instance.get_pos_patterns()
 
@@ -91,24 +89,32 @@ def narrow_results(word_counts, ngram_counts, filtered_ngrams):
     return narrowed_word_counts, narrowed_ngram_counts, narrowed_filtered_ngrams
 
 
-def analyze_text(text):
+def analyze_text(text, ngram_lengths=[2, 3, 4, 5], freq_target=2):
     """
-    Master function that handles analysis and filtering of words and ngrams for provided text.
+    Adjusted to take ngram_lengths and freq_target as parameters.
     """
     if not text:
         return None
-    
+
     try:
-        word_counts, ngram_counts = process_text(text, 5)
+        max_n = max(ngram_lengths) if ngram_lengths else 5
+        word_counts, ngram_counts = process_text(text, max_n)
+
+        ngram_counts = {n: counts for n, counts in ngram_counts.items() if n in ngram_lengths}
+
         filtered_ngrams = filter_ngrams_by_pos(ngram_counts)
-        
+
+        global FREQ_TARGET
+        FREQ_TARGET = freq_target
+
         narrowed_word_counts, narrowed_ngram_counts, narrowed_filtered_ngrams = narrow_results(word_counts, ngram_counts, filtered_ngrams)
-        
+
         return narrowed_word_counts, narrowed_ngram_counts, narrowed_filtered_ngrams
-    
+
     except Exception as e:
         print(f"Error analyzing text: {e}")
         return None
+
 
 def check_phrase(phrase="The dog swaggered away."):
     """
